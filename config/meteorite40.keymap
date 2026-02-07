@@ -7,6 +7,31 @@
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 200
 #include <dt-bindings/zmk/pointing.h>
 
+// Conversion definition for using Japanese keyboard with OS settings
+#define JP_DQUOTE       AT                // "
+#define JP_AMPERSAND    CARET             // &
+#define JP_QUOTE        AMPERSAND         // '
+#define JP_EQUAL        UNDER             // =
+#define JP_CARET        EQUAL             // ^
+#define JP_YEN          0x89              // ¥
+#define JP_PLUS         COLON             // +
+#define JP_TILDE        PLUS              // ~
+#define JP_PIPE         LS(0x89)          // |
+#define JP_AT           LEFT_BRACKET      // @
+#define JP_COLON        SINGLE_QUOTE      // :
+#define JP_ASTERISK     DOUBLE_QUOTES     // *
+#define JP_BACKQUOTE    LEFT_BRACE        // `
+#define JP_UNDERSCORE   LS(0x87)          // _
+#define JP_LBRACKET     RIGHT_BRACKET     // [
+#define JP_RBRACKET     BACKSLASH         // ]
+#define JP_LPAREN       ASTERISK          // (
+#define JP_RPAREN       LEFT_PARENTHESIS  // )
+#define JP_LBRACE       RIGHT_BRACE       // {
+#define JP_RBRACE       PIPE              // }
+#define JP_KANA         LANGUAGE_1        // かな
+#define JP_EISU         LANGUAGE_2        // 英数
+#define JP_HANZEN       GRAVE             // 半角/全角
+
 &mt { 
     flavor = "tap-preferred"; // change hold to tap
     tapping-term-ms = <200>;
@@ -88,10 +113,10 @@
         win_default_layer {
             display-name = "BASE";
             bindings = <
-                &kp Q        &kp W       &kp E        &kp R        &kp T                                 &kp Y        &kp U       &kp I       &kp O  &kp P
-                &mt LSHIFT A &kp S       &kp D        &kp F        &kp G                                 &kp H        &kp J       &kp K       &kp L  &kp MINUS
-                &kp Z        &kp X       &kp C        &kp V        &kp B        &mkp MB1     &mkp MB2    &kp N        &kp M       &kp COMMA   &kp DOT  &lt 4 SLASH
-                                    &kp LWIN  &mt LCTRL TAB  &mt LSHIFT SPACE  &lt 1 SPACE  &lt 2 ENTER  &lt 2 ENTER  &lt 3 BSPC  &kp RALT
+                &kp Q        &kp W       &kp E        &kp R        &kp T                                      &kp Y       &kp U        &kp I       &kp O    &kp P
+                &mt LCTRL A  &kp S       &kp D        &kp F        &kp G                                      &kp H       &kp J        &kp K       &kp L    &kp MINUS
+                &mt LSHIFT Z &kp X       &mt LCTRL C  &kp V        &kp B       &mkp MB4  &lt 2 JP_UNDERSCORE  &kp N       &kp M        &kp COMMA   &kp DOT  &lt 4 SLASH
+                                    &kp LWIN  &mt LALT TAB   &mt LSHIFT SPACE  &mkp MB1  &mkp MB2             &lt 1 BSPC  &lt 2 ENTER  &lt 3 DEL
             >;
 
             sensor-bindings =
@@ -103,12 +128,12 @@
         };
 
         layer_1 {
-            display-name = "SYMBOLS";
+            display-name = "NUM / ARROW";
             bindings = <
-                &kp EXCL   &kp AT    &kp HASH  &kp DLLR  &kp PRCNT                       &none      &kp LPAR   &kp RPAR   &kp LBKT   &kp RBKT
-                &kp CARET  &kp AMPS  &kp STAR  &kp BSLH  &kp PIPE                        &kp SEMI   &kp COLON  &kp SQT    &kp DQT    &kp EQUAL
-                &none      &none     &none     &none     &none      &mkp MB4  &mkp MB5   &kp GRAVE  &kp TILDE  &kp LBRC   &kp RBRC   &kp PLUS
-                                     &trans     &trans    &trans    &trans    &trans     &trans    &kp DEL     &trans
+                &kp N1           &kp N2     &kp N3           &kp N4           &kp N5                           &kp N6        &kp N7    &kp N8    &kp N9     &kp N0
+                &kp JP_PLUS      &kp MINUS  &kp JP_LBRACKET  &kp JP_RBRACKET  &kp DOT                          &kp JP_COLON  &kp LEFT  &kp UP    &kp RIGHT  &kp JP_QUOTE
+                &kp JP_ASTERISK  &kp SLASH  &kp JP_LPAREN    &kp JP_RPAREN    &kp JP_EQUAL &mkp MB3  &mkp MB5  &kp SEMI      &trans    &kp DOWN  &trans     &kp JP_DQUOTE
+                                 &trans     &trans           &trans           &trans       &trans    &trans    &trans        &trans
             >;
 
             sensor-bindings =
@@ -119,12 +144,12 @@
         };
 
         layer_2 {
-            display-name = "NUM / ARROW";
+            display-name = "SYMBOLS";
             bindings = <
-                &kp ASTRK        &kp N7     &kp N8     &kp N9     &kp PLUS                        &kp LG(LS(S)) &kp LC(MINUS) &kp LC(EQUAL) &kp C_VOL_DN &kp C_VOL_UP
-                &kp SLASH        &kp N4     &kp N5     &kp N6     &kp MINUS                       &none         &kp LEFT      &kp UP        &kp DOWN     &kp RIGHT
-                &kp N0           &kp N1     &kp N2     &kp N3     &kp DOT   &mkp MB4   &mkp MB5   &none         &kp LG(LEFT)  &kp LG(UP)    &kp LG(DOWN) &kp LG(RIGHT)
-                                        &trans           &trans     &trans     &trans    &trans        &trans  &trans    &trans
+                &kp EXCL   &kp AT    &kp HASH  &kp DLLR  &kp PRCNT                       &none      &kp LPAR   &kp RPAR   &kp LBKT   &kp RBKT
+                &kp CARET  &kp AMPS  &kp STAR  &kp BSLH  &kp PIPE                        &kp SEMI   &kp COLON  &kp SQT    &kp DQT    &kp EQUAL
+                &none      &none     &none     &none     &none      &mkp MB4  &mkp MB5   &kp GRAVE  &kp TILDE  &kp LBRC   &kp RBRC   &kp PLUS
+                                     &trans    &trans    &trans     &trans    &trans     &trans     &kp DEL    &trans
             >;
 
             sensor-bindings =
@@ -138,7 +163,7 @@
             bindings = <
                 &kp F1  &kp F2  &kp F3  &kp F4  &kp F5                  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10
                 &none   &none   &none   &none   &none                   &none   &none   &none   &none   &none
-                &none   &none   &none   &none   &none   &none   &none   &none   &none   &none    &none  &none
+                &none   &none   &none   &none   &none   &none   &none   &none   &none   &none   &none   &none
                                 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
 
