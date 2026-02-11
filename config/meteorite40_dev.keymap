@@ -52,6 +52,14 @@
             bindings = <&msc>, <&msc>;
             tap-ms = <25>;
         };
+        lt_mkp: lt_mkp {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LT_MKP";
+            bindings = <&mo>, <&mkp>;
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+        };
+
     };
 
     combos {
@@ -113,10 +121,10 @@
         win_default_layer {
             display-name = "BASE";
             bindings = <
-                &kp Q        &kp W       &kp E        &kp R        &kp T                                      &kp Y       &kp U        &kp I       &kp O    &kp P
-                &mt LCTRL A  &kp S       &kp D        &kp F        &kp G                                      &kp H       &kp J        &kp K       &kp L    &kp MINUS
-                &mt LSHIFT Z &kp X       &mt LCTRL C  &kp V        &kp B       &mkp MB4  &lt 2 JP_UNDERSCORE  &kp N       &kp M        &kp COMMA   &kp DOT  &lt 4 SLASH
-                                   &kp LWIN  &mt LALT TAB    &mt LSHIFT SPACE  &mkp MB1  &mkp MB2             &lt 1 BSPC  &lt 2 ENTER  &lt 3 DEL
+                &kp Q        &kp W       &kp E        &kp R        &kp T                                &kp Y       &kp U        &kp I        &kp O    &kp P
+                &mt LCTRL A  &kp S       &kp D        &kp F        &kp G                                &kp H       &kp J        &kp K        &kp L    &kp MINUS
+                &mt LSHIFT Z &kp X       &mt LCTRL C  &kp V        &kp B     &lt_mkp 2 MB4  &mkp MB2    &kp N       &kp M        &kp COMMA    &kp DOT  &lt 4 SLASH
+                                   &kp LWIN  &mt LALT TAB  &mt LSHIFT SPACE  &mkp MB1       &lt 1 BSPC  &lt 2 ENTER  &lt 3 ENTER  &lt 3 DEL
             >;
 
             sensor-bindings =
@@ -130,9 +138,9 @@
         layer_1 {
             display-name = "NUM / ARROW";
             bindings = <
-                &kp N1           &kp N2     &kp N3           &kp N4           &kp N5                           &kp N6        &kp N7    &kp N8    &kp N9     &kp N0
-                &kp JP_PLUS      &kp MINUS  &kp JP_LBRACKET  &kp JP_RBRACKET  &kp DOT                          &kp JP_COLON  &kp LEFT  &kp UP    &kp RIGHT  &kp JP_QUOTE
-                &kp JP_ASTERISK  &kp SLASH  &kp JP_LPAREN    &kp JP_RPAREN    &kp JP_EQUAL &mkp MB3  &mkp MB5  &kp SEMI      &trans    &kp DOWN  &trans     &kp JP_DQUOTE
+                &kp N1           &kp N2     &kp N3           &kp N4           &kp N5                           &kp N6        &kp N7          &kp N8    &kp N9     &kp N0
+                &kp JP_PLUS      &kp MINUS  &kp JP_LBRACKET  &kp JP_RBRACKET  &kp DOT                          &kp JP_COLON  &kp LEFT        &kp UP    &kp RIGHT  &kp JP_QUOTE
+                &kp JP_ASTERISK  &kp SLASH  &kp JP_LPAREN    &kp JP_RPAREN    &kp JP_EQUAL &mkp MB3  &mkp MB5  &kp SEMI      &JP_UNDERSCORE  &kp DOWN  &trans     &kp JP_DQUOTE
                                  &trans     &trans           &trans           &trans       &trans    &trans    &trans        &trans
             >;
 
